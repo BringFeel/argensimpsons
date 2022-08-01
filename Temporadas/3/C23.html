@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	Edited by BringFeel
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+
+	Si mi rey, no me olvide de esto
+-->
+<html lang="es">
+	<head>
+	        <link rel="shortcut icon" href="https://i.pinimg.com/736x/e5/78/8d/e5788dbe485307de98dc170f6960b225--los-simpsons-argentina.jpg" type="image/x-icon" />
+	        <meta charset="utf-8" />
+	        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://argensimpsons.bringfeel.com/assets/css/main.css" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body class="landing is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+					<section id="banner">
+						<div class="inner">
+							<h2 id="ename"></h2>
+							<p id="edate"></p>
+						</div>
+						<a href="#capitulos" class="more scrolly">Comenzar a ver</a>
+					</section>
+
+					<section id="capitulos" class="wrapper style3 special">
+						<div class="inner">
+							<header class="major">
+								<h2 style="font-size: 6vw;padding: 0;">Reproductor</h2>
+							</header>
+							<p><iframe class="frame" src="" width="100%" height="460" frameborder="0" scrolling="no" allowfullscreen="allowfullscreen"></iframe></p>
+							<a id="vurlbutton" href="#" class="button primary small fit">Volver</a>
+						</div>
+					</section>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="https://discord.bringfeel.com" class="icon brands fa-discord"><span class="label">Discord</span></a></li>
+							<li><a href="mailto:soporte@bringfeel.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>argensimpsons.bringFeel.com</li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+						<script>
+							function fetchData() {
+	fetch('data.json').then(response => {
+		return response.json();
+	}).then(data => {
+		$('#ename').text(data.Temp1[22].ename);
+		$('#edate').text(data.Temp1[22].edate);
+		$('#eurl').text(data.Temp1[22].eurl);
+		$('#tn').text(data.Temp1[22].tn);
+		$('#enumber').text(data.Temp1[22].enumber);
+
+		var myFrame = document.getElementsByClassName("frame")[0];
+
+		function getRandomUrl(myFrame) {
+			myFrame.src = data.Temp1[22].eurl;
+		}
+
+		function codeAddress() {
+			getRandomUrl(myFrame);
+		}
+
+		codeAddress();
+
+		document.getElementById("vurlbutton").onclick = function () {
+        location.href = data.Temp1[24].vurl;
+        };
+
+		codeAddress();
+		const tn = data.Temp1[0].tn
+		const enumber = data.Temp1[0].enumber
+
+		document.title = "Argensimpsons • Temporada " + tn + " • Capitulo " + enumber;
+
+	}).catch(error => {
+		console.log(error);
+	});
+	
+}
+
+fetchData();
+</script>		
+			<script src="https://bringfeel.com/assets/js/jquery.scrollex.min.js"></script>
+			<script src="https://bringfeel.com/assets/js/jquery.scrolly.min.js"></script>
+			<script src="https://bringfeel.com/assets/js/browser.min.js"></script>
+			<script src="https://bringfeel.com/assets/js/breakpoints.min.js"></script>
+			<script src="https://bringfeel.com/assets/js/util.js"></script>
+			<script src="https://bringfeel.com/assets/js/main.js"></script>
+
+	</body>
+</html>
